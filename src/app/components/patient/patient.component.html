@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="col-md-12 txtBox">
+    <br>
+      <h4>Patient Profile</h4>
+
+      <form [formGroup]="patientForm">
+        <div [ngClass]="cssClass" role="alert" *ngIf="message">
+           {{message}}
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="codigo">Full Name</label>
+            <input type="text" formControlName="fullName" class="form-control"  [ngClass]="{ 'is-invalid': submitted && fullName.invalid }"/>
+            <div *ngIf="submitted && fullName.invalid" class="invalid-feedback">
+              <div *ngIf="fullName.invalid"> Name invalid</div>
+            </div>  
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="descricao">Email</label>
+            <input type="text" formControlName="email" class="form-control"  [ngClass]="{ 'is-invalid': submitted && email.errors }"/>
+            <div *ngIf="submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email invalid</div>
+            </div>  
+          </div>
+          <div class="form-group col-md-4">
+            <label for="codigo">Telephone</label>
+            <input type="text" formControlName="telephone" class="form-control" mask='(000) 000-0000'  [ngClass]="{ 'is-invalid': submitted && telephone.invalid }"/>
+            <div *ngIf="submitted && telephone.invalid" class="invalid-feedback">
+                <div *ngIf="telephone.invalid">Telephone invalid</div>
+            </div>  
+          </div>
+          <div class="form-group col-md-4">
+            <label for="descricao">Sex</label>
+            <select class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && gender.invalid }" >
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+            <div *ngIf="submitted && gender.invalid" class="invalid-feedback">
+                <div *ngIf="gender.invalid">Sex invalid</div>
+            </div> 
+          </div>
+        </div>
+      </form>  
+      <br>
+      <div class="form-row">
+        <button type="button" rel="tooltip" *ngIf="!id" class="btn btn-primary" (click)="savePatient()">Save</button>
+        <button type="button" rel="tooltip" *ngIf="id" class="btn btn-success" (click)="updatePatient()">Update</button>&nbsp;
+        <button type="button" (click)="cancel(true)" class="btn btn-secondary">Cancel</button>
+     </div> 
+     <br>
+    <div class="form-row">
+        <table id="gridPatient" class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Telephone</th>
+              <th>Sex</th>
+              <th width="140">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="pagination && pagination.totalElements == 0">
+             <tr>
+               <td colspan="5">Number  of patients entered</td>
+             </tr> 
+          </tbody>
+          <tbody *ngIf="pagination">
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.name }}</td>
+              <td>{{ patient.email }}</td>
+              <td>{{ patient.telephone }}</td>
+              <td>{{ patient.sex == "M" ? "Male" : "Female" }}</td>
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <a (click)="loadPatient(patient.id)" rel="tooltip" title="Editar" class="btn btn-default"><i class="fa fa-fw fa-pencil-square-o"></i></a>
+                  <button (click)="deletePatient(patient.id)" type="button" rel="tooltip" title="Apagar?" class="btn btn-default btn-danger"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination *ngIf="pagination && pagination.totalPages > 1" 
+            [boundaryLinks]="true" 
+            [totalItems]="pagination.totalElements" 
+            [(ngModel)]="pagination.number"
+            class="pagination-sm" 
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;" 
+            [itemsPerPage]="pagination.size"
+            (pageChanged)="pageChanged($event)">
+        </pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="col-md-12 txtBox">
+    <br>
+      <h3>Mail Order Pharmacy Benefit Manager</h3>
+
+     <div class="card-deck">
+   <div class="card border-warning mb-3" style="max-width: 18rem;">
+  <div class="card-header">Translation</div>
+  <div class="card-body text-warning">
+    <ul class="navbar-nav">
+	<h5 class="card-title">Step 1</h5>
+	<li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['createorder']">Create Order</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+   <div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header">CRX/Inquiry</div>
+  <div class="card-body text-success">
+    <ul class="navbar-nav">
+	<h5 class="card-title">Step 2</h5>
+	<li class="nav-item">
+        <a class="nav-link" href="#" routerLink="verify">Verify Order</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+  <div class="card border-danger mb-3" style="max-width: 18rem;">
+  <div class="card-header">Queue</div>
+  <div class="card-body text-danger">
+    <ul class="navbar-nav">
+	<h5 class="card-title">Step 3</h5>
+	<li class="nav-item">
+        <a class="nav-link" href="#" routerLink="queue">Maintain the Queue</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="card-body text-dark">
+    <ul class="navbar-nav">
+	<h5 class="card-title">Problem Resolution</h5>
+	<li class="nav-item">
+        <a class="nav-link" href="#" routerLink="resolve">Resolve Conflicts</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+   <div class="card border-info mb-3" style="max-width: 18rem;">
+  <div class="card-header">Prescription Verification</div>
+  <div class="card-body text-info">
+    <ul class="navbar-nav">
+	<h5 class="card-title">Step 4</h5>
+	<li class="nav-item">
+        <a class="nav-link" href="#" routerLink="shipping">Shipping Order</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
