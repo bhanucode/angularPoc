@@ -20,6 +20,7 @@ export class AuthService {
       this.loggedIn.next(true);
       this.router.navigate(['/home']);
     }
+	
   }
 
   logout() {
